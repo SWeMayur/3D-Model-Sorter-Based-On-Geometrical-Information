@@ -1,0 +1,7 @@
+﻿  MaxCostComparator.cpp
+D:\Mayur_Workspace\Visualizer\Comparators\MaxCostComparator.h(20,26): warning C4251: 'MaxCostComparator::jsonValues': class 'std::map<float,int,std::less<float>,std::allocator<std::pair<const float,int>>>' needs to have dll-interface to be used by clients of class 'MaxCostComparator'
+  (compiling source file '/MaxCostComparator.cpp')
+  D:\Mayur_Workspace\Visualizer\Comparators\MaxCostComparator.h(20,10):
+  see declaration of 'std::map<float,int,std::less<float>,std::allocator<std::pair<const float,int>>>'
+  
+  Comparators.vcxproj -> D:\Mayur_Workspace\Visualizer\x64\Debug\Comparators.dll
