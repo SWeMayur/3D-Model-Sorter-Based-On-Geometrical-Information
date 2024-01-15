@@ -2,16 +2,18 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QOpenGLBuffer>
+#include <qopenglcontext.h>
 #include <QMainWindow>
 #include <QQuaternion>
 #include <QWheelEvent>
 #include <queue>
-#include "Point3D.h"
-#include <iostream>
-#include <queue>
 #include <vector>
 #include <algorithm>
 #include <map>
+#include "MaxYDifferenceComparator.h"
+#include "YearOfEstablishComparator.h"
+#include "MaxCostComparator.h"
+#include "Point3D.h"
 
 using namespace std;
 using namespace GeometricEntity;
@@ -28,10 +30,12 @@ public:
     ~OpenGLWindow();
     void mouseMoveEvent(QMouseEvent* event);
     void readSTL(std::string &filePath);
-    void getAllFiles(QStringList &filePathList);
+    void getAllFiles(QStringList &mFilePathList);
+    void setTableContent(QStringList& mFileList, QTableWidget& mModelTable);
 
 public:
     std::map<std::string, float> costMap;
+    int choice = -1;
 
 protected:
     void paintGL() override;
@@ -40,10 +44,12 @@ protected:
 private:
     void reset();
     void storeSortedFiles();
+    void writeVerticesMapToJson(std::string& filePath, std::unordered_map<std::string, int> &map);
+    QString readShader(QString filepath);
+    void wheelEvent(QWheelEvent* event);
+    void selectSortMethod();
 signals:
     void shapeUpdate();
-
-
 
 private:
     bool mAnimating = false;
@@ -53,10 +59,7 @@ private:
     QOpenGLShader* mVshader = nullptr;
     QOpenGLShader* mFshader = nullptr;
     QOpenGLShaderProgram* mProgram = nullptr;
-    
 
-    //QList<QVector3D> mVertices;
-    //QList<QVector3D> mNormals;
     QOpenGLBuffer mVbo;
     double mVertexAttr;
     double mNormalAttr;
@@ -73,48 +76,17 @@ private:
 
     std::vector<Point3D> mVertices;
     std::vector<Point3D> mColors;
+    std::vector<Point3D> mNormals;
 
     std::vector<std::vector<float>> mAllVertices;
     std::vector<std::vector<float>> mAllColors;
 
-    std::map<int, float> stlPriceMap;
+    std::vector<float> mTotalVertices;
+    std::vector<float> mTotalColors;
+
+    std::map<float, int> verticesMap;
+
+    std::vector<vector<Point3D>> sortedSTLList;
 
     float zoomFactor = 1.0f;
-
-    struct MaxYDifferenceComparator {
-        bool operator()(const vector<Point3D>& v1, const vector<Point3D>& v2) const {
-            // Calculate the maximum difference in y coordinates for each vector
-            float maxYV1 = -12345678.0f;
-            float maxYV2 = -12345678.0f;
-            for (int i = 0; i < v1.size(); i++) {
-                if (v1[i].y() > maxYV1) maxYV1 = v1[i].y();
-            }
-            for (int i = 0; i < v2.size(); i++) {
-                if (v2[i].y() > maxYV2) maxYV2 = v2[i].y();
-            }
-
-            return maxYV1 < maxYV2;
-        }
-    };
-
-    struct MaxPriceComparator {
-        bool operator()(const vector<Point3D>& v1, const vector<Point3D>& v2) const {
-            
-        }
-    };
-
-    std::priority_queue<std::vector<Point3D>, std::vector<std::vector<Point3D>>, MaxYDifferenceComparator> pq;
 };   
-
-
-
-/*QFile file("Price.json");
-            QString s1 = QString::number(v1.size());
-            QString s2 = QString::number(v2.size());
-            QByteArray jsonData = file.readAll();
-            QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonData);
-
-            QJsonObject jsonObject = jsonDocument.object();
-            QJsonValue v11 = jsonObject.value(s1);
-            QJsonValue v22 = jsonObject.value(s2);
-            return v11.toInt() > v22.toInt();*/
