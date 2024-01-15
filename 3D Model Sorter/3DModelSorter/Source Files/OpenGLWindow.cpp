@@ -6,9 +6,13 @@
 #include <QPainter>
 #include <fstream>
 #include <sstream>
+#include <unordered_map>
 #include <random>
+#include <cstdlib>
 #include "STLReader.h"
 #include "Point3D.h"
+#include <iostream>
+#include "JsonFileReader.h"
 
 using namespace IOOperation;
 using namespace GeometricEntity;
@@ -39,14 +43,13 @@ void OpenGLWindow::reset() {
 
 void OpenGLWindow::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT);
-
+    glClearColor(135.0f / 255.0f, 206.0f / 255.0f, 235.0f / 255.0f, 1.0f);
     mProgram->bind();
 
     QMatrix4x4 matrix;
     matrix.rotate(rotationAngle);
-    
-    matrix.ortho(-30.0f, 430.0f, -130.0f, 430.0f, 0.1f, 100.0f);
-
+    matrix.ortho(-30.0f, 430, -130.0f, 430.0f, -130.0f, 100.0f);
+    matrix.scale(zoomFactor);
     for (int i = 0; i < mAllVertices.size(); i++)
     {
         matrix.translate(30, 0, 0);
@@ -61,13 +64,12 @@ void OpenGLWindow::paintGL() {
         glEnableVertexAttribArray(m_posAttr);
         glEnableVertexAttribArray(m_colAttr);
 
-        glDrawArrays(GL_LINE_LOOP, 0, mAllVertices[i].size() / 3);
+        glDrawArrays(GL_TRIANGLES, 0, mAllVertices[i].size() / 3);
         matrix.translate(-30, 0, 0);
         matrix.rotate(-180.0f, 0.0f, 1.0f, 0.0f);
         mProgram->setUniformValue(m_matrixUniform, matrix);
     }
 }
-
 
 void OpenGLWindow::mouseMoveEvent(QMouseEvent* event) {
     int dx = event->x() - lastPos.x();
@@ -83,26 +85,12 @@ void OpenGLWindow::mouseMoveEvent(QMouseEvent* event) {
     lastPos = event->pos();
 }
 
-
 void OpenGLWindow::initializeGL() {
-    static const char* vertexShaderSource =
-        "attribute highp vec4 posAttr;\n"
-        "attribute lowp vec4 colAttr;\n"
-        "varying lowp vec4 col;\n"
-        "uniform highp mat4 matrix;\n"
-        "void main() {\n"
-        "   col = colAttr;\n"
-        "   gl_Position = matrix * posAttr;\n"
-        "}\n";
-
-    static const char* fragmentShaderSource =
-        "varying lowp vec4 col;\n"
-        "void main() {\n"
-        "   gl_FragColor = col;\n"
-        "}\n";
 
     initializeOpenGLFunctions();
     setMouseTracking(true);
+    QString vertexShaderSource = readShader("vertexShader.glsl");
+    QString fragmentShaderSource = readShader("fragmentShader.glsl");
 
     mProgram = new QOpenGLShaderProgram(this);
     mProgram->addShaderFromSourceCode(QOpenGLShader::Vertex, vertexShaderSource);
@@ -117,86 +105,161 @@ void OpenGLWindow::initializeGL() {
     if (m_posAttr == -1 || m_colAttr == -1 || m_matrixUniform == -1)
     {
         qDebug() << "Shader attribute or uniform location error.";
-        // Handle the error appropriately, e.g., return or throw an exception
     }
 }
+
+QString OpenGLWindow::readShader(QString filepath)
+{
+    QFile file(filepath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return "Invalid file";
+    QTextStream stream(&file);
+    QString line = stream.readLine();
+    while (!stream.atEnd())
+    {
+        line.append(stream.readLine());
+    }
+    return line;
+}
+
+void OpenGLWindow::wheelEvent(QWheelEvent* event)
+{
+    int delta = event->angleDelta().y();
+    // Adjust the zoom factor based on the mouse wheel movement
+    if (delta > 0) {
+        // Zoom in
+        zoomFactor *= 1.1f;
+    }
+    else {
+        // Zoom out
+        zoomFactor /= 1.1f;
+    }
+    update();
+}
+
 
 void OpenGLWindow::readSTL(std::string &filePath)
 {
     mVertices.clear();
     mColors.clear();
-    STLReader reader(filePath, mVertices, mColors);
+    STLReader reader(filePath, mVertices, mColors, mNormals);
+    QFileInfo fileName(QString::fromStdString(filePath));
 }
 
-void OpenGLWindow::getAllFiles(QStringList &filePathList)
+
+void OpenGLWindow::getAllFiles(QStringList &mFilePathList)
 {
-    for (int i = 0; i < filePathList.size(); i++)
+    for (int i = 0; i < mFilePathList.size(); i++)
     {   
-        std::string filePath = filePathList[i].toStdString();
+        std::string filePath = mFilePathList[i].toStdString();
         readSTL(filePath);
-        pq.push(mVertices);
+        sortedSTLList.push_back(mVertices);
     }
     storeSortedFiles();
+}
 
+void OpenGLWindow::writeVerticesMapToJson(std::string &filePath, std::unordered_map<std::string, int>& json_data)
+{
+    JsonFileReader reader(filePath, json_data);
+}
+
+void OpenGLWindow::selectSortMethod()
+{
+    switch (choice) 
+    {
+    case 1:
+    {
+        MaxYDifferenceComparator heightComparator;
+        std::sort(sortedSTLList.begin(), sortedSTLList.end(), heightComparator);
+        break;
+    }
+    case 2:
+    {
+        MaxCostComparator costComparator;
+        std::sort(sortedSTLList.begin(), sortedSTLList.end(), costComparator);
+        break;
+    }
+    case 3:
+    {
+        YearOfEstablishComparator ageComparator;
+        std::sort(sortedSTLList.begin(), sortedSTLList.end(), ageComparator);
+        break;
+    }
+    default: break;
+    }
 }
 
 void OpenGLWindow::storeSortedFiles()
 {   
-    int x = 1;
-    while (!pq.empty())
+    mAllVertices.clear();
+    mAllColors.clear();
+    selectSortMethod();
+
+    for(int i = 0 ; i < sortedSTLList.size() ; i ++)
     {
-        std::vector<Point3D> v = pq.top();
-        pq.pop();
+        std::vector<Point3D> v = sortedSTLList[i];
         std::vector<float> c;
         for (Point3D p : v) {
+
             c.push_back(p.x());
             c.push_back(p.y());
             c.push_back(p.z());
         }
+       
         mAllVertices.push_back(c);
-
         std::vector<float> colors;
-        if (x == 1)
-        {
-            for (Point3D p : mColors) {
-                colors.push_back(1.0f);
-                colors.push_back(0.0f);
-                colors.push_back(0.0f);
-            }
-        }
-        else if (x == 2)
-        {
-            for (Point3D p : mColors) {
-                colors.push_back(0.0f);
-                colors.push_back(1.0f);
-                colors.push_back(0.0f);
-            }
-        }
-        else if(x == 3)
-        {
-            for (Point3D p : mColors) {
-                colors.push_back(0.0f);
-                colors.push_back(0.0f);
-                colors.push_back(1.0f);
-            }
-        }
-        else if(x == 4)
-        {
-            for (Point3D p : mColors) {
-                colors.push_back(1.0f);
-                colors.push_back(1.0f);
-                colors.push_back(0.0f);
-            }
-        }
-        else 
-        {
-            for (Point3D p : mColors) {
-                colors.push_back(1.0f);
-                colors.push_back(0.0f);
-                colors.push_back(1.0f);
-            }
+        for (Point3D p : mColors) {
+            colors.push_back(p.x());
+            colors.push_back(p.y());
+            colors.push_back(p.z());
         }
         mAllColors.push_back(colors);
-        x++;
     }
+    sortedSTLList.clear();
+    update();
+}
+
+
+void OpenGLWindow::setTableContent(QStringList& mFileList, QTableWidget& mModelTable)
+{
+    for (int i = 0; i < mFileList.size(); i++)
+    {
+        // Insert a new row
+        mModelTable.insertRow(i);
+
+        // Set Model Name in column 0
+        QTableWidgetItem* modelNameItem = new QTableWidgetItem(mFileList[i]);
+        modelNameItem->setTextAlignment(Qt::AlignCenter);
+        mModelTable.setItem(i, 0, modelNameItem);
+
+        // Set Height in column 1
+        std::unordered_map<std::string, int> map;
+        std::string str = "Height.json";
+        writeVerticesMapToJson(str, map);
+        int key = map[mFileList[i].toStdString()];
+        QString val = QString::number(key) + " m";
+        QTableWidgetItem* heightItem = new QTableWidgetItem(val);
+        heightItem->setTextAlignment(Qt::AlignCenter);
+        mModelTable.setItem(i, 1, heightItem);
+
+        // Set Price in column 2
+        str = "Price.json";
+        writeVerticesMapToJson(str, map);
+        key = map[mFileList[i].toStdString()];
+        val = QString::number(key);
+        QTableWidgetItem* priceItem = new QTableWidgetItem(val);
+        priceItem->setTextAlignment(Qt::AlignCenter);
+        mModelTable.setItem(i, 2, priceItem);
+
+        // Set Year in column 3
+        str = "Year.json";
+        writeVerticesMapToJson(str, map);
+        key = map[mFileList[i].toStdString()];
+        val = QString::number(key);
+        QTableWidgetItem* yearItem = new QTableWidgetItem(val);
+        yearItem->setTextAlignment(Qt::AlignCenter);
+        mModelTable.setItem(i, 3, yearItem);
+    }
+
+  
 }
