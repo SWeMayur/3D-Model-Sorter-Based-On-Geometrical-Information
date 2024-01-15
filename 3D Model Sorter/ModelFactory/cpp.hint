@@ -1,0 +1,2 @@
+#define MODELFACTORY_API __declspec(dllexport)
+#define MODELFACTORY_API __declspec(dllimport)

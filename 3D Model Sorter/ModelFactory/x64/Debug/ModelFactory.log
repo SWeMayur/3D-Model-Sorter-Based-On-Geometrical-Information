@@ -1,0 +1,220 @@
+﻿  ModelGenerator.cpp
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(21,19): error C2079: 'dataFile' uses undefined class 'std::basic_ifstream<char,std::char_traits<char>>'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(29,19): error C2079: 'writeFile' uses undefined class 'std::basic_ofstream<char,std::char_traits<char>>'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(32,17): error C2672: 'std::getline': no matching overloaded function found
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(82,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(32,17):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(75,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(32,17):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(68,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(32,17):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &&' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(25,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(32,17):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(37,32): error C2079: 'iss' uses undefined class 'std::basic_istringstream<char,std::char_traits<char>,std::allocator<char>>'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(37,35): error C2440: 'initializing': cannot convert from 'std::string' to 'int'
+  (compiling source file '/ModelGenerator.cpp')
+  D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(37,35):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(40,17): error C2677: binary '>>': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xstring(5144,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(40,13):
+  	'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,23): error C2297: '<<': not valid as right operand has type 'const char [9]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,37): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,44): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,54): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,61): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,71): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,78): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,96): error C2039: 'endl': is not a member of 'std'
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(23,1):
+  see declaration of 'std'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,96): error C2065: 'endl': undeclared identifier
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(41,88): warning C4552: '<<': result of expression not used
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(43,18): error C2672: 'std::getline': no matching overloaded function found
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(82,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(43,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(75,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(43,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(68,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(43,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &&' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(25,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(43,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(44,32): error C2079: 'iss1' uses undefined class 'std::basic_istringstream<char,std::char_traits<char>,std::allocator<char>>'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(44,36): error C2440: 'initializing': cannot convert from 'std::string' to 'int'
+  (compiling source file '/ModelGenerator.cpp')
+  D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(44,36):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(45,18): error C2677: binary '>>': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xstring(5144,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(45,13):
+  	'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,23): error C2297: '<<': not valid as right operand has type 'const char [9]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,37): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,44): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,54): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,61): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,71): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,78): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,96): error C2039: 'endl': is not a member of 'std'
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(23,1):
+  see declaration of 'std'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,96): error C2065: 'endl': undeclared identifier
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(46,88): warning C4552: '<<': result of expression not used
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(48,18): error C2672: 'std::getline': no matching overloaded function found
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(82,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(48,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(75,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(48,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(68,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(48,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &&' from 'int'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(25,32):
+  or       'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(48,18):
+  	'std::basic_istream<_Elem,_Traits> &std::getline(std::basic_istream<_Elem,_Traits> &&,std::basic_string<_Elem,_Traits,_Alloc> &,const _Elem)': expects 3 arguments - 2 provided
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(49,32): error C2079: 'iss2' uses undefined class 'std::basic_istringstream<char,std::char_traits<char>,std::allocator<char>>'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(49,36): error C2440: 'initializing': cannot convert from 'std::string' to 'int'
+  (compiling source file '/ModelGenerator.cpp')
+  D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(49,36):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(50,18): error C2677: binary '>>': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xstring(5144,32):
+  could be 'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(50,13):
+  	'std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_istream<_Elem,_Traits> &' from 'int'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,23): error C2297: '<<': not valid as right operand has type 'const char [9]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,37): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,44): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,54): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,61): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,71): error C2297: '<<': not valid as right operand has type 'const char [2]'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,78): error C2297: '<<': not valid as right operand has type 'double'
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,96): error C2039: 'endl': is not a member of 'std'
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(23,1):
+  see declaration of 'std'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,96): error C2065: 'endl': undeclared identifier
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(51,88): warning C4552: '<<': result of expression not used
+  (compiling source file '/ModelGenerator.cpp')
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(53,24): error C2677: binary '<<': no global operator found which takes type 'std::string' (or there is no acceptable conversion)
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xstring(5193,32):
+  could be 'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)'
+  	D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(53,14):
+  	'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'int'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(53,40): error C2039: 'endl': is not a member of 'std'
+  (compiling source file '/ModelGenerator.cpp')
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\string(23,1):
+  see declaration of 'std'
+  
+D:\Mayur_Workspace\Visualizer\ModelFactory\ModelGenerator.cpp(53,40): error C2065: 'endl': undeclared identifier
+  (compiling source file '/ModelGenerator.cpp')
+  
