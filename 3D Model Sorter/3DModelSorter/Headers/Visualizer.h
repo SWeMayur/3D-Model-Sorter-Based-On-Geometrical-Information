@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "OpenGLWindow.h"
 #include <Qvector>
+#include <set>
 
 class OpenGLWindow;
 
@@ -18,25 +19,31 @@ private:
     void openFileSelectionDialog();
     void completeFileSelect();
     void callSort();
+    void showModel();
+    void handleComboBoxChange();
 
 private:
     QWidget* mCentralWidget;
     OpenGLWindow* mRenderer;
 
-    QPushButton* doneFileSelect;
-    QPushButton* addFileButton;
-    QPushButton* sortButton;
+    QPushButton* mDoneFileSelectButton;
+    QPushButton* mAddFileButton;
+    QPushButton* mSortButton;
+    QPushButton* mShowModelButton;
 
-    QStringList fileList;
-    QStringList filePathList;
-
-    QStringListModel* fileModel;
+    QStringList mFileList;
+    QStringList mFilePathList;
 
     QVector<GLfloat>mVertices;
     QVector<GLfloat>mColors;
 
-    QListView* listOfFiles;
-    QComboBox* parameterList;
-    QLabel* chooseParameterLabel;
+    QListView* mListOfFiles;
+    QComboBox* mParameterList;
+    QLabel* mChooseParameterLabel;
 
+    QTableWidget* mModelTable;
+
+    QHBoxLayout* mMainLayout;
+    QSplitter* mSplitter;
+    QVBoxLayout* mVerticalLayout;
 };
