@@ -10,4 +10,4 @@ The 3D Model Sorter is a project designed to organize and categorize 3D models b
 - **Customizable Criteria:** Users can define their own sorting criteria, such as file type, size, date created, or custom metadata.
 - **User-Friendly Interface:** The graphical user interface (GUI) makes it easy for users to interact with the tool without the need for complex commands.
 
-[Demo Video](https://github.com/SWeMayur/3D-Model-Sorter-Based-On-Geometrical-Information/blob/main/3D%20Model%20Sorter%20Implementation.mp4)
+[Demo Video](https://drive.google.com/file/d/1nk8Ra2TAnJGH6NqW_NpIZ_Ym-4Tw0bf8/view?usp=sharing)
